@@ -1,0 +1,91 @@
+// Sumber: cv_dila_qonita_hidayati.md. image/url null => poster bawaan / label "Coming soon".
+export const projects = [
+  {
+    title: 'SignTalk',
+    role: 'Full-stack, computer vision & ML',
+    year: '2026',
+    image: null,
+    url: null,
+    bullets: [
+      'Real-time sign language recognition using MediaPipe Hands (21 landmarks per hand), OpenCV, and a Scikit-Learn Random Forest.',
+      'Custom dataset of 45,000+ labeled samples, with a Python backend and browser-based hand detection to cut server load.',
+    ],
+    stack: ['MediaPipe', 'OpenCV', 'Scikit-Learn', 'Python', 'Vercel'],
+  },
+  {
+    title: 'PuskesMap',
+    role: 'GIS & Spatial Analytics Developer',
+    year: '2026',
+    image: '/projects/puskesmap.webp',
+    url: null,
+    bullets: [
+      'Web GIS mapping health facilities in Bogor, built with React, Leaflet, PostgreSQL, and PostGIS.',
+      'Spatial queries for distance, buffer zones, and nearest puskesmas from the user’s location, served as GeoJSON.',
+    ],
+    stack: ['React', 'Leaflet', 'PostgreSQL', 'PostGIS'],
+  },
+  {
+    title: 'PlayZone',
+    role: 'Full-stack & UI/UX',
+    year: '2026',
+    image: null,
+    url: null,
+    bullets: [
+      'Cashier modules in Laravel MVC with role-based access control and walk-in / scanner-based order workflows.',
+      'Designed interfaces and user flows in Figma, then deployed to Railway.',
+    ],
+    stack: ['Laravel', 'Figma', 'Railway'],
+  },
+  {
+    title: 'EduAgro',
+    role: 'AR development & UI/UX',
+    year: '2026',
+    image: null,
+    url: null,
+    bullets: [
+      'Image-based AR experience with markers and interfaces designed in Figma.',
+      'Five 3D assets modeled in Blender and integrated in Unity with Canvas-based navigation.',
+    ],
+    stack: ['Unity', 'Blender', 'Figma'],
+  },
+  {
+    title: 'IoSalt',
+    role: 'Front-End Developer',
+    year: '2025 – 2026',
+    image: '/projects/iosalt.webp',
+    url: 'https://iosalt.vercel.app/',
+    bullets: [
+      'Landing page and dashboard interfaces with reusable components and responsive layouts.',
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+  },
+  {
+    title: 'PolyGame',
+    role: 'Front-End Developer',
+    year: '2025 – 2026',
+    image: '/projects/polygame.webp',
+    url: null,
+    bullets: [
+      'Admin-side interfaces in Laravel Blade, connected to backend routes and controllers.',
+    ],
+    stack: ['Laravel', 'Blade'],
+  },
+  {
+    title: 'Website PTB',
+    role: 'Front-End Developer',
+    year: '2025 – 2026',
+    image: '/projects/ptb.webp',
+    url: 'https://website-ptb.wasmer.app/landingpage.php',
+    bullets: ['Responsive landing and login pages built with Tailwind CSS.'],
+    stack: ['Tailwind CSS', 'PHP'],
+  },
+  {
+    title: 'MyCadaz',
+    role: 'Web Project',
+    year: '',
+    image: '/projects/mycadaz.webp',
+    url: 'https://mycadaz.netlify.app/',
+    bullets: ['Live web project (details to be added).'],
+    stack: [],
+  },
+];

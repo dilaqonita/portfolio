@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Logo Dila: huruf "d" yang lengkungnya adalah matahari, di langit fajar-ke-malam, dengan satu bintang -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2B5DB0"/>
+      <stop offset="1" stop-color="#150C4A"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFD36B"/>
+      <stop offset="1" stop-color="#FF9ED1"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#sky)"/>
+  <circle cx="27" cy="38" r="12" fill="url(#sun)"/>
+  <rect x="37" y="13" width="6.5" height="37" rx="3.25" fill="#FFF8F1"/>
+  <path d="M17 14.5l1.6 3.9 3.9 1.6-3.9 1.6-1.6 3.9-1.6-3.9-3.9-1.6 3.9-1.6z" fill="#FFF8F1"/>
+</svg>
