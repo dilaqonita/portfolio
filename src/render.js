@@ -12,19 +12,38 @@ const LINKEDIN_PATH =
 export function renderAll() {
   // ---- Experience: daftar editorial, klik untuk membuka detail ----
   document.getElementById('exp-list').innerHTML = experience
-    .map(
-      (e, i) => `<li class="exp-row">
-        <span class="exp-line" aria-hidden="true"></span>
-        <button class="exp-head" type="button" aria-expanded="false" aria-controls="exp-body-${i}">
-          <span class="exp-fill" aria-hidden="true"></span>
-          <span class="exp-num">${String(i + 1).padStart(2, '0')}</span>
-          <span class="exp-main"><span class="exp-role">${esc(e.role)}</span><span class="exp-org">${esc(e.org)}</span></span>
-          <span class="exp-side"><span class="exp-tag">${esc(e.tag)}</span><span class="exp-year">${esc(e.period)}</span></span>
-          <span class="exp-plus" aria-hidden="true"></span>
-        </button>
-        <div class="exp-body" id="exp-body-${i}"><ul>${e.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul></div>
-      </li>`
-    )
+    .map((e, i) => {
+      const no = String(i + 1).padStart(2, '0');
+      const year = (e.period.match(/\d{4}/) || [''])[0];
+      const colors = ['#FF9ED1', '#FFD9B8', '#9CCBFF', '#C9B6F5', '#FFE08A'];
+      return `<li class="bp-row" style="--i:${i};--tk:${colors[i % colors.length]}">
+        <div class="bp-card" role="button" tabindex="0" aria-pressed="false" aria-label="${esc(e.role)}, ${esc(e.org)}. Press to flip the ticket">
+          <div class="bp-flip">
+            <div class="bp-face bp-front">
+              <div class="bp-main">
+                <div class="bp-top"><span class="bp-brand">Boarding Pass</span><span class="bp-plane" aria-hidden="true">✈︎</span></div>
+                <h3 class="bp-role">${esc(e.role)}</h3>
+                <p class="bp-org">${esc(e.org)}</p>
+                <div class="bp-fields">
+                  <div><small>Class</small><b>${esc(e.tag)}</b></div>
+                  <div><small>Period</small><b>${esc(e.period)}</b></div>
+                  <div><small>Seat</small><b>${no}</b></div>
+                </div>
+              </div>
+              <div class="bp-stub" aria-hidden="true"><span class="bp-no">No. ${no}</span><span class="bp-year">${year}</span><i class="bp-bars"></i><span class="bp-hint">Tap to flip ↻</span></div>
+            </div>
+            <div class="bp-face bp-back" aria-hidden="true">
+              <div class="bp-main">
+                <div class="bp-top"><span class="bp-brand">Flight log</span><span class="bp-plane" aria-hidden="true">✈︎</span></div>
+                <ul class="bp-list">${e.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
+              </div>
+              <div class="bp-stub" aria-hidden="true"><span class="bp-no">No. ${no}</span><span class="bp-year">${year}</span><i class="bp-bars"></i><span class="bp-hint">Tap to flip back ↻</span></div>
+            </div>
+          </div>
+          <span class="bp-dim" aria-hidden="true"></span>
+        </div>
+      </li>`;
+    })
     .join('');
 
   // ---- Achievements: kartu di carousel silinder ----

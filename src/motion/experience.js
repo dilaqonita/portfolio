@@ -1,26 +1,31 @@
 import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { flipChars, scrubWords } from './text.js';
 
-// Experience editorial: marquee outline di belakang, kalimat menyala per kata, garis tergambar,
-// baris terisi warna dari arah kursor masuk, klik untuk membuka detail.
+// Experience "Boarding Pass Stack": tiap pengalaman = tiket pesawat. Saat di-scroll, tiket baru
+// menimpa tiket sebelumnya (sticky stack, yang tertimpa mengecil + menggelap). Klik / Enter untuk membalik tiket.
 export function initExperience({ animate }) {
-  const rows = gsap.utils.toArray('.exp-row');
+  const rows = gsap.utils.toArray('.bp-row');
 
-  // ---- buka / tutup detail (berfungsi juga tanpa animasi) ----
+  // ---- balik tiket (berfungsi juga tanpa animasi) ----
   rows.forEach((row) => {
-    const head = row.querySelector('.exp-head');
-    const body = row.querySelector('.exp-body');
-    const plus = row.querySelector('.exp-plus');
-    gsap.set(body, { height: 0 });
-    head.addEventListener('click', () => {
-      const open = head.getAttribute('aria-expanded') !== 'true';
-      head.setAttribute('aria-expanded', String(open));
-      row.classList.toggle('open', open);
-      gsap.to(body, { height: open ? 'auto' : 0, duration: animate ? 0.6 : 0, ease: 'power3.inOut', onComplete: () => ScrollTrigger.refresh() });
-      gsap.to(plus, { rotation: open ? 135 : 0, duration: animate ? 0.5 : 0, ease: 'back.out(2)' });
-      if (open && animate) gsap.from(body.querySelectorAll('li'), { y: 16, opacity: 0, duration: 0.5, stagger: 0.07, delay: 0.15 });
+    const card = row.querySelector('.bp-card');
+    const flip = row.querySelector('.bp-flip');
+    const front = row.querySelector('.bp-front');
+    const back = row.querySelector('.bp-back');
+    gsap.set(flip, { transformPerspective: 1500 });
+    const toggle = () => {
+      const on = card.getAttribute('aria-pressed') !== 'true';
+      card.setAttribute('aria-pressed', String(on));
+      front.setAttribute('aria-hidden', String(on));
+      back.setAttribute('aria-hidden', String(!on));
+      gsap.to(flip, { rotationY: on ? 180 : 0, duration: animate ? 0.9 : 0, ease: 'power3.inOut' });
+      // sedikit "terbang" saat dibalik
+      if (animate) gsap.fromTo(card, { scale: 1 }, { scale: 1.03, duration: 0.45, yoyo: true, repeat: 1, ease: 'power2.inOut', overwrite: false });
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
   });
 
@@ -35,34 +40,25 @@ export function initExperience({ animate }) {
     scrollTrigger: { trigger: '.experience', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
   });
 
-  rows.forEach((row) => {
-    const head = row.querySelector('.exp-head');
-    const fill = row.querySelector('.exp-fill');
-    const role = SplitText.create(row.querySelector('.exp-role'), { type: 'lines', mask: 'lines' });
+  const mobile = () => window.innerWidth <= 720;
 
-    gsap
-      .timeline({ scrollTrigger: { trigger: row, start: 'top 85%' } })
-      .from(row.querySelector('.exp-line'), { scaleX: 0, transformOrigin: '0% 50%', duration: 1, ease: 'power3.inOut' })
-      .from(row.querySelector('.exp-num'), { yPercent: 100, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.25)
-      .from(role.lines, { yPercent: 110, duration: 0.8, ease: 'power4.out' }, 0.3)
-      .from(row.querySelectorAll('.exp-org, .exp-side > *, .exp-plus'), { y: 18, opacity: 0, duration: 0.6, stagger: 0.06, ease: 'power3.out' }, 0.45);
+  rows.forEach((row, i) => {
+    const card = row.querySelector('.bp-card');
 
-    // isi warna mengikuti arah masuk/keluar kursor (atas atau bawah)
-    const dir = (e) => {
-      const b = head.getBoundingClientRect();
-      return e.clientY - b.top < b.height / 2 ? '50% 0%' : '50% 100%';
-    };
-    head.addEventListener('mouseenter', (e) => {
-      gsap.set(fill, { transformOrigin: dir(e) });
-      gsap.to(fill, { scaleY: 1, duration: 0.45, ease: 'power3.out', overwrite: true });
-      gsap.to(head.querySelector('.exp-main'), { x: 18, duration: 0.45, ease: 'power3.out' });
-      row.classList.add('hot');
+    // tiket meluncur masuk dari bawah dengan sedikit miring, lalu lurus
+    gsap.from(card, {
+      y: 160, rotation: i % 2 ? 4 : -4, opacity: 0, duration: 1.1, ease: 'power4.out',
+      scrollTrigger: { trigger: row, start: 'top 90%' },
     });
-    head.addEventListener('mouseleave', (e) => {
-      gsap.set(fill, { transformOrigin: dir(e) });
-      gsap.to(fill, { scaleY: 0, duration: 0.4, ease: 'power3.inOut', overwrite: true });
-      gsap.to(head.querySelector('.exp-main'), { x: 0, duration: 0.45, ease: 'power3.out' });
-      row.classList.remove('hot');
-    });
+
+    // tiket yang ditimpa tiket berikutnya: mengecil & menggelap (scrub mengikuti scroll)
+    const next = rows[i + 1];
+    if (!next) return;
+    const nextTop = () => (mobile() ? 84 + 16 * (i + 1) : 96 + 22 * (i + 1));
+    gsap.timeline({
+      scrollTrigger: { trigger: next, start: 'top 85%', end: () => `top ${nextTop()}px`, scrub: true },
+    })
+      .to(card, { scale: 0.94, ease: 'none' }, 0)
+      .to(row.querySelector('.bp-dim'), { opacity: 0.38, ease: 'none' }, 0);
   });
 }
