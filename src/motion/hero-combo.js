@@ -106,7 +106,7 @@ export function initHero() {
   gsap
     .timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: 0.6, invalidateOnRefresh: true }, defaults: { ease: 'none' } })
     // 1) sampul dibuka; di baliknya matahari + kamu muncul
-    .to('.mag-side', { opacity: 0, duration: 0.05 }, 0)
+    .fromTo('.mag-side', { opacity: 1 }, { opacity: 0, duration: 0.05, immediateRender: false }, 0)
     .to('.mag-cover', { rotationY: -165, duration: 0.28, ease: 'power1.inOut' }, 0.02)
     .fromTo('.pt-sun-w', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2 }, 0.06)
     .fromTo('.pt-me-w', { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22 }, 0.06)
@@ -115,18 +115,18 @@ export function initHero() {
     .fromTo('.pt-clouds', { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.12)
     // 2) majalah melebar jadi layar penuh
     .fromTo('.cb-scene', { clipPath: inset }, { clipPath: 'inset(0px 0px 0px 0px round 0px 0px 0px 0px)', duration: 0.2, ease: 'power2.inOut' }, 0.3)
-    .to(book, { autoAlpha: 0, duration: 0.04 }, 0.3)
+    .fromTo(book, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.04, immediateRender: false }, 0.3)
     .fromTo('.pt-ui', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.08 }, 0.46)
     // 3) (jeda sebentar) lalu kamera masuk ke dalam matahari
-    .fromTo('.pt-ui', { opacity: 1, y: 0 }, { opacity: 0, y: -40, duration: 0.06 }, 0.62)
-    .fromTo('.pt-name', { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.7, duration: 0.22 }, 0.62)
+    .fromTo('.pt-ui', { opacity: 1, y: 0 }, { opacity: 0, y: -40, duration: 0.06, immediateRender: false }, 0.62)
+    .fromTo('.pt-name', { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.7, duration: 0.22, immediateRender: false }, 0.62)
     .fromTo('.pt-me', { scale: 1, yPercent: 0 }, { scale: 1.45, yPercent: 10, duration: 0.26 }, 0.62)
-    .fromTo('.pt-me', { opacity: 1 }, { opacity: 0, duration: 0.1 }, 0.78)
+    .fromTo('.pt-me', { opacity: 1 }, { opacity: 0, duration: 0.1, immediateRender: false }, 0.78)
     .fromTo('.pt-rings', { scale: 1, opacity: 1 }, { scale: 2.2, opacity: 0, duration: 0.2 }, 0.62)
     .fromTo('.pt-clouds', { y: 0 }, { y: -80, duration: 0.38 }, 0.62)
     .fromTo('.pt-glow', { opacity: 1 }, { opacity: 0, duration: 0.1 }, 0.64)
     .fromTo('.pt-sun', { scale: 1 }, { scale: coverScale, ease: 'power1.in', duration: 0.34 }, 0.64)
-    .fromTo('.pt-sun', { opacity: 1 }, { opacity: 0, duration: 0.06 }, 0.94);
+    .fromTo('.pt-sun', { opacity: 1 }, { opacity: 0, duration: 0.06, immediateRender: false }, 0.94);
 
   parallax([['.pt-me-w', 26, 0], ['.pt-sun-w', 14, 10]]);
   return intro;

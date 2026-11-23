@@ -65,7 +65,7 @@ export function initAchievements({ animate }) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: stage, pin: true, start: 'top top', end: () => `+=${N * 170}`,
-        scrub: 0.9, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 1,
+        scrub: 0.9, invalidateOnRefresh: true, anticipatePin: 1,
       },
     });
     tl.to(state, { rot: -(N - 1) * step, ease: 'none', onUpdate: render }, 0)
