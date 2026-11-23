@@ -9,9 +9,10 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import Lenis from 'lenis';
 import './styles/main.css';
+import './styles/hero-combo.css';
 import { hangingLogos } from './data/logos.js';
 import { projects } from './data/projects.js';
-import { initHero } from './motion/hero.js';
+import { mountHero, initHero } from './motion/hero-combo.js';
 import { initTicker } from './motion/ticker.js';
 import { initSky } from './motion/sky.js';
 import { initProjects } from './motion/projects.js';
@@ -29,6 +30,8 @@ import { initMenu } from './motion/menu.js';
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin, Draggable, InertiaPlugin, Flip, MotionPathPlugin, DrawSVGPlugin);
 
 renderAll();
+
+mountHero();
 
 // ---- render: logo gantung ----
 // Wind chime: tali berbeda panjang, bola kaca, label pastel (peach / blue / pink) sesuai tema
@@ -105,7 +108,7 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
   );
 
   // urutan penting: trigger ber-pin (projects) dibuat sebelum trigger langit agar posisinya ikut ter-refresh benar
-  const intro = initHero({ animate: true });
+  const intro = initHero();
   initProjects({ animate: true });
   initAbout({ animate: true });
   initExperience({ animate: true });
@@ -137,7 +140,6 @@ mm.add('(prefers-reduced-motion: reduce)', () => {
   initMenu({ animate: false });
   document.getElementById('loader')?.remove();
   document.documentElement.classList.remove('loading');
-  initHero({ animate: false });
   initTicker({ animate: false });
   initSky({ animate: false });
   initProjects({ animate: false });

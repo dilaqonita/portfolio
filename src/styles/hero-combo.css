@@ -1,0 +1,81 @@
+/* ---------- hero: Magazine -> Sun Portal ---------- */
+.hero--combo { display: block; overflow: clip; }
+.hv { position: relative; z-index: 3; pointer-events: none; }
+.hv a, .hv button { pointer-events: auto; }
+.hero--combo .hero-note { color: var(--ink); }
+.hero--combo .cta-row { margin-top: 18px; }
+.hero--static { height: auto !important; }
+.hero--static .hv { position: relative !important; height: 100svh !important; }
+
+/* matahari, nama, foto, awan */
+.pt-sun-w { position: absolute; left: 50%; top: 46%; width: var(--d); height: var(--d); margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2); }
+.pt-sun { position: absolute; inset: 0; border-radius: 50%; will-change: transform;
+  background: radial-gradient(circle at 38% 32%, #FFF6D2 0%, #FFD36B 40%, #FF9A4D 100%); }
+.pt-glow { position: absolute; inset: -46%; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255, 170, 90, .55) 0%, rgba(255, 170, 90, .32) 36%, rgba(255, 150, 200, .16) 52%, rgba(255, 150, 200, 0) 68%); }
+.pt-rings { position: absolute; left: 50%; top: 46%; width: 0; height: 0; }
+.pt-ring { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, .7); animation: pt-spin 60s linear infinite; }
+.pt-ring.r1 { width: calc(var(--d) * 1.22); height: calc(var(--d) * 1.22); margin: calc(var(--d) * -.61) 0 0 calc(var(--d) * -.61); }
+.pt-ring.r2 { width: calc(var(--d) * 1.5); height: calc(var(--d) * 1.5); margin: calc(var(--d) * -.75) 0 0 calc(var(--d) * -.75); border-style: solid; border-color: rgba(255, 255, 255, .35); animation-direction: reverse; animation-duration: 90s; }
+@keyframes pt-spin { to { rotate: 360deg; } }
+.pt-name { position: absolute; z-index: 1; left: 0; right: 0; top: 29vh; margin: 0; transform: translateY(-50%); display: flex; justify-content: center; align-items: center; gap: 23vh; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: -.035em; line-height: .84; font-size: clamp(60px, min(10.5vw, 20vh), 230px); color: var(--ink); }
+.pt-line { display: block; flex: 1; padding: .04em 0; }
+.pt-line:first-child { text-align: right; }
+.pt-line:last-child { text-align: left; }
+.pt-line > span { display: inline-block; position: relative; }
+.pt-line:last-child > span small { position: absolute; right: .04em; top: 94%; font-size: .13em; letter-spacing: .08em; font-style: italic; font-weight: 600; text-transform: none; white-space: nowrap; }
+.pt-me-w { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; }
+.pt-me { display: block; height: clamp(360px, 84vh, 920px); width: auto; max-width: 96vw; object-fit: contain; transform-origin: 50% 100%; filter: drop-shadow(0 20px 40px rgba(19, 40, 79, .3)); }
+.pt-clouds { position: absolute; inset: 0; z-index: 3; }
+.pt-cloud { position: absolute; border-radius: 999px; background: radial-gradient(ellipse at 50% 55%, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, 0) 72%); }
+.pt-cloud.a { left: -6%; bottom: 14%; width: 46vw; height: 17vh; }
+.pt-cloud.b { right: -8%; bottom: 30%; width: 38vw; height: 14vh; }
+.pt-ui { position: absolute; z-index: 4; inset: auto 0 0 0; padding: 0 var(--pad) clamp(28px, 6vh, 64px); display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+.pt-foot { max-width: 330px; }
+.pt-hint { font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); animation: pt-bob 1.8s ease-in-out infinite; }
+@keyframes pt-bob { 50% { translate: 0 6px; } }
+@media (max-width: 720px) {
+  .pt-ui { inset: 76px 0 auto 0; padding-top: 6px; align-items: flex-start; }
+  .pt-hint, .pt-foot .hero-note { display: none; }
+  .pt-foot .cta-row { margin: 0; }
+  .pt-foot .btn { padding: 10px 18px; font-size: 14px; }
+  .pt-me { height: clamp(300px, 64vh, 700px); }
+  .pt-name { top: 26vh; flex-direction: column; align-items: center; gap: 0; font-size: clamp(60px, 25vw, 130px); }
+  .pt-line, .pt-line:first-child, .pt-line:last-child { flex: none; text-align: center; }
+  .pt-sun-w, .pt-rings { top: 52%; }
+}
+
+/* sampul majalah */
+.mag-book { position: relative; width: var(--W); height: min(var(--H), calc(var(--W) / .72)); perspective: 1800px; filter: drop-shadow(0 30px 50px rgba(14, 6, 46, .45)); }
+.mag-cover { position: absolute; inset: 0; overflow: hidden; border-radius: 6px 18px 18px 6px; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  background: linear-gradient(180deg, #7DB9EA 0%, #BFE4F6 45%, #FFD9B8 100%); color: var(--ink); container-type: inline-size; pointer-events: auto; }
+.mag-cover::before { content: ""; position: absolute; z-index: 6; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, rgba(19, 40, 79, .35), rgba(19, 40, 79, 0)); }
+.mag-bg { position: absolute; inset: 0; }
+.mag-sun { position: absolute; left: 50%; top: 34%; width: 62%; aspect-ratio: 1; margin: -31% 0 0 -31%; border-radius: 50%; background: radial-gradient(circle at 38% 32%, #FFF6D2, #FFD36B 45%, #FF9A4D); box-shadow: 0 0 60px 20px rgba(255, 170, 90, .4); }
+.mag-top { position: absolute; z-index: 5; left: 7%; right: 7%; top: 3.2%; display: flex; justify-content: space-between; font-size: clamp(9px, 2.6cqw, 13px); font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.mag-mast { position: absolute; z-index: 1; left: 0; right: 0; top: 7%; margin: 0; text-align: center; font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: -.04em; line-height: .8; font-size: 40cqw; color: #fff; text-shadow: 0 6px 0 rgba(19, 40, 79, .12); }
+.mag-mast span { display: inline-block; }
+.mag-me { position: absolute; z-index: 2; left: 64%; bottom: 0; height: 76%; width: auto; transform: translateX(-50%); }
+.mag-lines { position: absolute; z-index: 4; left: 6%; top: 40%; display: grid; gap: 3.4cqw; margin: 0; padding: 0; list-style: none; max-width: 31%; }
+.mag-lines b { display: block; font-family: var(--display); font-weight: 800; font-size: 8cqw; line-height: 1; letter-spacing: -.02em; color: var(--ink); background: #FFD36B; padding: .08em .3em; border-radius: 6px; width: fit-content; transform: rotate(-3deg); }
+.mag-lines li:nth-child(2) b { background: #FF9ED1; transform: rotate(2deg); }
+.mag-lines li:nth-child(3) b { background: #fff; }
+.mag-lines span { display: block; margin-top: 4px; font-size: 2.7cqw; line-height: 1.25; font-weight: 600; }
+.mag-bar { position: absolute; z-index: 4; right: 6%; bottom: 22%; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 2.6cqw; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.mag-code { display: block; width: 18cqw; height: 9cqw; background: #fff; border-radius: 4px; padding: 6px; background-clip: content-box;
+  background-image: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 13px); box-shadow: 0 0 0 6px #fff; }
+.mag-strap { position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; margin: 0; padding: 3.5cqw 7%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 6.4cqw; letter-spacing: -.01em; }
+.mag-strap small { display: block; font-family: var(--font-body, inherit); font-size: 2.8cqw; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-top: 2px; }
+.mag-side { position: absolute; z-index: 5; bottom: clamp(28px, 7vh, 70px); max-width: 300px; }
+.mag-side.l { left: var(--pad); }
+.mag-side.r { right: var(--pad); text-align: right; font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+@media (max-width: 900px) { .mag-side.l, .mag-side.r { display: none; } }
+
+/* susunan panggung */
+.hero--combo { height: 430svh; }
+.hv-combo { --d: min(72vh, 84vw); --H: min(calc(100svh - 128px), 860px); --W: min(92vw, calc(var(--H) * .72));
+  position: sticky; top: 0; height: 100svh; display: grid; place-items: center; padding-top: 76px; box-sizing: border-box; overflow: hidden; }
+.cb-scene { position: absolute; inset: 0; z-index: 1; }
+.hv-combo .mag-book { z-index: 3; }
+.hv-combo .mag-side { z-index: 4; }
+.hero--static .mag-book, .hero--static .mag-side { display: none; }
+.hero--static .cb-scene { clip-path: none !important; }
