@@ -15,6 +15,7 @@
     "simple-icons": "^16.38.1"
   },
   "devDependencies": {
-    "vite": "^8.3.8"
+    "vite": "^8.3.8",
+    "vite-plugin-compression2": "^2.5.4"
   }
 }

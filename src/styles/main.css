@@ -108,7 +108,7 @@ em { font-family: var(--display); font-style: italic; font-weight: 600; }
 .cloud {
   position: absolute; z-index: 2; border-radius: 999px; pointer-events: none;
   background: radial-gradient(ellipse at 50% 55%, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .45) 45%, rgba(255, 255, 255, 0) 72%);
-  filter: blur(14px);
+  filter: blur(14px); will-change: translate;
   animation: cloud-drift 18s ease-in-out infinite alternate;
 }
 .cloud::before, .cloud::after {
@@ -130,7 +130,7 @@ em { font-family: var(--display); font-style: italic; font-weight: 600; }
 .ticker { padding: var(--section) 0 clamp(48px, 7vw, 96px); }
 .chime { position: relative; }
 .cloudbar {
-  position: absolute; z-index: 2; top: -6px; left: -4%; right: -4%; height: 72px; pointer-events: none; filter: blur(7px); opacity: .9;
+  position: absolute; z-index: 2; top: -6px; left: -4%; right: -4%; height: 72px; pointer-events: none; filter: blur(7px); opacity: .9; will-change: transform;
   background:
     radial-gradient(ellipse 80px 30px at 50% 55%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 100%) 0 0 / 140px 72px repeat-x,
     radial-gradient(ellipse 70px 26px at 50% 50%, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0) 100%) 70px 10px / 140px 72px repeat-x;
@@ -152,7 +152,6 @@ em { font-family: var(--display); font-style: italic; font-weight: 600; }
   width: clamp(64px, 6.4vw, 82px); aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle at 30% 24%, rgba(255, 255, 255, .95), rgba(255, 255, 255, .55) 45%, rgba(255, 255, 255, .3) 100%);
   border: 1.5px solid rgba(255, 255, 255, .85);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   box-shadow: 0 16px 28px rgba(19, 40, 79, .22), inset 0 -8px 14px rgba(125, 189, 235, .35), inset 0 6px 10px rgba(255, 255, 255, .8);
 }
 .logo-svg { width: 46%; height: 46%; }
@@ -414,7 +413,6 @@ html.lb-open { overflow: hidden; }
 .soc {
   display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
   background: rgba(255, 255, 255, .1); border: 1.5px solid rgba(255, 255, 255, .35);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .4); transition: background .25s, border-color .25s;
 }
 .soc:hover { background: rgba(255, 255, 255, .2); border-color: #FF9ED1; }
