@@ -202,6 +202,7 @@ em { font-family: var(--display); font-style: italic; font-weight: 600; }
 .shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: #FF9ED1; }
 .shot-bar i:nth-child(2) { background: #FFD36B; } .shot-bar i:nth-child(3) { background: #7CF0A8; }
 .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.1); display: block; }
+.shot img.fit { transform: none; object-fit: fill; }
 .poster { display: grid; place-content: center; text-align: center; color: #fff; gap: 6px; }
 .poster span { font-family: var(--display); font-weight: 800; font-size: clamp(36px, 6vw, 72px); letter-spacing: -.02em; line-height: 1; }
 .poster small { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; opacity: .8; }

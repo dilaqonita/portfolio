@@ -10,6 +10,7 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import Lenis from 'lenis';
 import './styles/main.css';
 import './styles/hero-combo.css';
+import './styles/folio-gallery.css';
 import { hangingLogos } from './data/logos.js';
 import { projects } from './data/projects.js';
 import { mountHero, initHero } from './motion/hero-combo.js';
@@ -26,12 +27,15 @@ import { runLoader } from './motion/loader.js';
 import { initPolish } from './motion/polish.js';
 import { initSprings } from './motion/springs.js';
 import { initMenu } from './motion/menu.js';
+import { initFolio } from './motion/folio.js';
+import { renderGallery, initGallery } from './motion/gallery.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin, Draggable, InertiaPlugin, Flip, MotionPathPlugin, DrawSVGPlugin);
 
 renderAll();
 
 mountHero();
+const hasGallery = renderGallery();
 
 // ---- render: logo gantung ----
 // Wind chime: tali berbeda panjang, bola kaca, label pastel (peach / blue / pink) sesuai tema
@@ -61,7 +65,7 @@ document.getElementById('project-list').innerHTML = projects
     const bullets = p.bullets.map((b) => `<p>${b}</p>`).join('');
     const hasImg = Boolean(p.image);
     const shot = hasImg
-      ? `<div class="shot"><div class="shot-bar"><i></i><i></i><i></i></div><img src="${p.image}" alt="Screenshot of ${p.title}" loading="lazy"></div>`
+      ? `<div class="shot"><div class="shot-bar"><i></i><i></i><i></i></div><img class="${p.fit ? 'fit' : ''}" src="${p.image}" alt="Screenshot of ${p.title}" loading="lazy"></div>`
       : '';
     const action = p.url
       ? `<a class="more" href="${p.url}" target="_blank" rel="noopener">Visit project <span aria-hidden="true">↗</span></a>`
@@ -102,17 +106,22 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
       const target = id.length > 1 && document.querySelector(id);
       if (target) {
         e.preventDefault();
-        lenis.scrollTo(target, { offset: 0 });
+        if (id === '#projects') {
+          const fz = document.getElementById('folio');
+          lenis.scrollTo(fz.getBoundingClientRect().top + scrollY + fz.offsetHeight - innerHeight);
+        } else lenis.scrollTo(target, { offset: 0 });
       }
     })
   );
 
   // urutan penting: trigger ber-pin (projects) dibuat sebelum trigger langit agar posisinya ikut ter-refresh benar
   const intro = initHero();
-  initProjects({ animate: true });
   initAbout({ animate: true });
+  initFolio({ animate: true });
+  initProjects({ animate: true });
   initExperience({ animate: true });
   initAchievements({ animate: true });
+  if (hasGallery) initGallery({ animate: true });
   initContact({ animate: true });
   initTicker({ animate: true });
   initSky({ animate: true });
@@ -142,7 +151,9 @@ mm.add('(prefers-reduced-motion: reduce)', () => {
   document.documentElement.classList.remove('loading');
   initTicker({ animate: false });
   initSky({ animate: false });
+  initFolio({ animate: false });
   initProjects({ animate: false });
+  if (hasGallery) initGallery({ animate: false });
   initAbout({ animate: false });
   initExperience({ animate: false });
   initAchievements({ animate: false });

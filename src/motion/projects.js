@@ -12,18 +12,18 @@ export function initProjects({ animate }) {
     { yPercent: 6, rotationZ: -22 },
     {
       yPercent: -22, rotationZ: -14, ease: 'none',
-      scrollTrigger: { trigger: '.proj-intro', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
+      scrollTrigger: { trigger: '#folio', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
     }
   );
 
   // ---- judul: per huruf (SplitText), lead: per baris bermasker ----
-  flipChars('.proj-intro-text .h2', '.proj-intro', 'top 70%');
+  flipChars('.proj-intro-text .h2', '#folio', 'top 40%');
   SplitText.create('.proj-intro-text .lead', {
     type: 'lines', mask: 'lines', autoSplit: true,
     onSplit: (self) =>
       gsap.from(self.lines, {
         yPercent: 110, duration: 0.9, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: '.proj-intro', start: 'top 62%' },
+        scrollTrigger: { trigger: '#folio', start: 'top 40%' },
       }),
   });
 
@@ -39,7 +39,7 @@ export function initProjects({ animate }) {
     tl.from(body, { y: 28, opacity: 0, duration: 0.7, stagger: 0.07, ease: 'power3.out' }, shot ? 0.2 : 0);
 
     const img = card.querySelector('.shot img');
-    if (img) {
+    if (img && !img.classList.contains('fit')) {
       gsap.fromTo(img, { yPercent: -4 }, {
         yPercent: 4, ease: 'none',
         scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },

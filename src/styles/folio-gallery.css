@@ -1,0 +1,31 @@
+/* ---------- zoom "PORTFOLIO" (di atas Selected Projects) ---------- */
+.projects { padding-top: 0; }
+.fz { position: relative; height: 330svh; }
+.fz-stick { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.fz-under { --bgo: 1; position: relative; width: 100%; height: 100%; display: grid; align-items: center; transform-origin: 50% 50%;
+  /* tepi atas & bawah memudar halus: tidak ada garis potong dengan section di bawahnya */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%); }
+.fz-under::before { content: ""; position: absolute; inset: 0; opacity: var(--bgo); background: linear-gradient(180deg, #CFE6F7 0%, #EBDCF3 100%); }
+.fz-under > * { position: relative; }
+.fz-under .wrap { width: min(1180px, 100%); }
+.fz-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: block; overflow: hidden; }
+.fz--static { height: auto; }
+.fz--static .fz-stick { position: relative; height: auto; min-height: 70svh; padding: var(--section) 0 0; }
+
+/* ---------- galeri "Moments": foto menyebar saat di-scroll ---------- */
+.gallery { position: relative; height: 650svh; color: #fff; }
+.gal-stick { position: sticky; top: 0; height: 100svh; overflow: hidden; perspective: 1200px; perspective-origin: 50% 50%; }
+.gal-title { position: absolute; z-index: 0; left: 0; right: 0; top: 50%; translate: 0 -50%; margin: 0; text-align: center; font-family: var(--display); font-weight: 800; letter-spacing: -.03em; line-height: 1; font-size: clamp(72px, 17vw, 280px); color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .22); pointer-events: none; }
+.gal-field { position: absolute; z-index: 1; inset: 0; transform-style: preserve-3d; }
+.gal-card { position: absolute; left: 50%; top: 50%; width: clamp(140px, 16vw, 250px); margin: 0; will-change: transform, opacity; }
+.gal-card img { display: block; width: 100%; height: auto; max-height: 56vh; object-fit: contain; border-radius: 16px; border: 3px solid #fff; box-shadow: 0 22px 46px rgba(8, 4, 36, .5); transition: scale .35s cubic-bezier(.34, 1.56, .64, 1); background: #fff; }
+.gal-card:hover img { scale: 1.07; }
+@media (max-width: 720px) { .gal-card { width: 38vw; } .gal-card img { border-radius: 12px; border-width: 2px; max-height: 40vh; } }
+
+.gallery--static { height: auto; padding: var(--section) 0; }
+.gallery--static .gal-stick { position: relative; height: auto; overflow: visible; }
+.gallery--static .gal-title { position: static; translate: none; margin-bottom: 32px; }
+.gallery--static .gal-field { position: static; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; padding: 0 var(--pad); }
+.gallery--static .gal-card { position: static; width: auto; }
+.gallery--static .gal-card img { width: 100%; height: auto; max-width: none; }

@@ -4,8 +4,9 @@ export const projects = [
     title: 'SignTalk',
     role: 'Full-stack, computer vision & ML',
     year: '2026',
-    image: null,
-    url: null,
+    image: '/projects/signtalk.webp',
+    fit: true,
+    url: 'https://signtalk-five.vercel.app/',
     bullets: [
       'Real-time sign language recognition using MediaPipe Hands (21 landmarks per hand), OpenCV, and a Scikit-Learn Random Forest.',
       'Custom dataset of 45,000+ labeled samples, with a Python backend and browser-based hand detection to cut server load.',
@@ -28,7 +29,8 @@ export const projects = [
     title: 'PlayZone',
     role: 'Full-stack & UI/UX',
     year: '2026',
-    image: null,
+    image: '/projects/playzone.webp',
+    fit: true,
     url: null,
     bullets: [
       'Cashier modules in Laravel MVC with role-based access control and walk-in / scanner-based order workflows.',
@@ -40,7 +42,8 @@ export const projects = [
     title: 'EduAgro',
     role: 'AR development & UI/UX',
     year: '2026',
-    image: null,
+    image: '/projects/eduagro.webp',
+    fit: true,
     url: null,
     bullets: [
       'Image-based AR experience with markers and interfaces designed in Figma.',
@@ -64,6 +67,7 @@ export const projects = [
     role: 'Front-End Developer',
     year: '2025 – 2026',
     image: '/projects/polygame.webp',
+    fit: true,
     url: null,
     bullets: [
       'Admin-side interfaces in Laravel Blade, connected to backend routes and controllers.',
@@ -81,11 +85,12 @@ export const projects = [
   },
   {
     title: 'MyCadaz',
-    role: 'Web Project',
+    role: 'Front-End Developer',
     year: '',
     image: '/projects/mycadaz.webp',
+    fit: true,
     url: 'https://mycadaz.netlify.app/',
-    bullets: ['Live web project (details to be added).'],
-    stack: [],
+    bullets: ['Responsive landing page for an ayam bakar business, built with Bootstrap.'],
+    stack: ['Bootstrap'],
   },
 ];

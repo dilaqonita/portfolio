@@ -41,11 +41,12 @@
       </a>
       <div class="links">
         <span class="nav-ind" aria-hidden="true"></span>
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#about" class="hide-sm">About</a>
         <a href="#stack" class="hide-sm">Tech Stack</a>
         <a href="#experience" class="hide-sm">Experience</a>
         <a href="#achievements" class="hide-sm">Certificates</a>
+        <a href="#gallery" class="hide-sm">Gallery</a>
         <a href="#contact" class="cta">Contact</a>
       </div>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><i></i><i></i></button>
@@ -54,12 +55,13 @@
 
   <div class="menu" id="menu" aria-hidden="true">
     <nav aria-label="Menu">
-      <a href="#projects"><span>01</span>Projects</a>
-      <a href="#about"><span>02</span>About</a>
+      <a href="#about"><span>01</span>About</a>
+      <a href="#projects"><span>02</span>Projects</a>
       <a href="#stack"><span>03</span>Tech Stack</a>
       <a href="#experience"><span>04</span>Experience</a>
       <a href="#achievements"><span>05</span>Certificates</a>
-      <a href="#contact"><span>06</span>Contact</a>
+      <a href="#gallery"><span>06</span>Gallery</a>
+      <a href="#contact"><span>07</span>Contact</a>
     </nav>
     <a class="menu-mail" href="mailto:dilaqonita05@gmail.com">dilaqonita05@gmail.com</a>
   </div>
@@ -70,20 +72,7 @@
     </section>
 
 
-    <section class="projects" id="projects" data-sky-top="#8CC6EE" data-sky-bottom="#F3DCF0">
-      <div class="wrap">
-        <div class="proj-intro">
-          <div class="wall" aria-hidden="true"><div class="wall-grid" id="wall-grid"></div></div>
-          <div class="proj-intro-text">
-            <h2 class="h2">Selected <span class="grad">Projects</span></h2>
-            <p class="lead">Web, GIS, and AI projects, built end to end from data and models to deployment.</p>
-          </div>
-        </div>
-        <div class="project-list" id="project-list"></div>
-      </div>
-    </section>
-
-    <section class="about" id="about" data-sky-top="#F3DCF0" data-sky-bottom="#FFDCC2">
+    <section class="about" id="about" data-sky-top="#BFE4F6" data-sky-bottom="#FFDCC2">
       <div class="wrap about-grid">
         <div class="avatar-col">
           <div class="poster-word" aria-hidden="true">Dila</div>
@@ -181,6 +170,39 @@
       </div>
     </section>
 
+    <section class="projects" id="projects">
+      <!-- Zoom "PORTFOLIO": isi (Selected Projects) hanya terlihat lewat huruf raksasa; di luar huruf = langit asli (tanpa tepi warna). -->
+      <div class="fz" id="folio" data-sky-top="#8CC6EE" data-sky-bottom="#F3DCF0">
+        <div class="fz-stick">
+          <svg class="fz-svg" aria-hidden="true" focusable="false">
+            <defs>
+              <mask id="fz-m" maskUnits="userSpaceOnUse">
+                <rect id="fz-mr" fill="#000"/>
+                <text id="fz-t" fill="#fff" text-anchor="middle">PORTFOLIO</text>
+                <rect id="fz-full" fill="#fff" opacity="0"/>
+              </mask>
+            </defs>
+            <foreignObject id="fz-fo" x="0" y="0" mask="url(#fz-m)">
+              <div class="fz-under">
+                <div class="wrap">
+                  <div class="proj-intro">
+          <div class="wall" aria-hidden="true"><div class="wall-grid" id="wall-grid"></div></div>
+          <div class="proj-intro-text">
+            <h2 class="h2">Selected <span class="grad">Projects</span></h2>
+            <p class="lead">Web, GIS, and AI projects, built end to end from data and models to deployment.</p>
+          </div>
+        </div>
+                </div>
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="project-list" id="project-list" data-sky-top="#8CC6EE" data-sky-bottom="#F3DCF0"></div>
+      </div>
+    </section>
+
     <section class="ticker" id="stack" aria-label="Tech stack" data-sky-top="#FFD9B8" data-sky-bottom="#FF9ED1">
       <div class="wrap stack-head">
         <h2 class="h2 stack-title">Tech <em class="pink">Stack</em></h2>
@@ -213,6 +235,13 @@
           <span class="ci-count"><b id="ci-n">01</b><i id="ci-total">/ 17</i></span>
           <div class="ci-text"><span class="ci-badge" id="ci-badge"></span><strong id="ci-title"></strong><em id="ci-sub"></em></div>
         </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery" data-sky-top="#1C1160" data-sky-bottom="#150C4A">
+      <div class="gal-stick">
+        <h2 class="gal-title" aria-label="Moments"><span aria-hidden="true">Moments</span></h2>
+        <div class="gal-field" id="gal-field"></div>
       </div>
     </section>
 
